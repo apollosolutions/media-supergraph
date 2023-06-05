@@ -2,6 +2,26 @@
 
 This repo provides a demonstration supergraph for a media business containing media and users subgraphs. You can explore the schema and run queries against it in Apollo Studio. We encourage you to also use the schema as inspiration for your own media supergraph!
 
+## Getting Started
+
+locally run Subgraphs:
+
+```
+npm run dev
+```
+
+locally run Router:
+
+```
+npm run router
+```
+
+NOTE: If this is your first time running the project, make sure you have first downloaded the latest version of Router using the following command:
+
+```
+curl -sSL https://router.apollo.dev/download/nix/latest | sh
+```
+
 ## View the Schema
 
 This demo is published to the [Apollo Solutions organization](https://studio.apollographql.com/org/apollo-solutions) in Apollo Studio with the graph ID [apollo-media-supergraph](https://studio.apollographql.com/graph/apollo-media-supergraph).
@@ -15,6 +35,14 @@ If you would like to run some sample operations, checkout the public [Operation 
 We also have a series of blog posts on media best practices that dive into different elements of this schema to illustrate how Apollo GraphOS helps power essential features of modern media applications:
 
 - _Blogs currently in progress_
+
+## GraphOS Features Demonstrated in Repo
+
+Below is the list of GraphOS Specific features that are demonstrated in this repo:
+
+- @Defer
+- Subscriptions
+- Entity Interface
 
 ## Local Development
 
