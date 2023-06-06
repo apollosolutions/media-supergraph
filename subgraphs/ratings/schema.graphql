@@ -13,7 +13,7 @@ type Query {
   getRatingById(id: ID!): Rating
 }
 
-type Rating @key(fields: "id") {
+type Rating @key(fields: "contentId") {
   contentId: ID!
   rating: Int
 }

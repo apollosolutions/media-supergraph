@@ -6,4 +6,9 @@ export const resolvers = {
   Query: {
     rating: (_, { id }) => getRatingById(id),
   },
+  Rating: {
+    __resolveReference(ref) {
+      return getRatingById(ref.id);
+    },
+  },
 };
