@@ -1,0 +1,46 @@
+# noinspection GraphQLTypeRedefinition
+
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+
+type Query {
+  """
+  Get comment. Useful for the primary media page or overview page
+  """
+  userComments(first: Int, after: String, sort: CommentSort): UserComments
+}
+
+type UserComments {
+  userId: ID!
+  comments: [UserComment!]
+}
+
+type UserComment @key(fields: "id") {
+  id: ID!
+  user: User
+  body: String
+  createdAt: String
+}
+
+type User @key(fields: "id") {
+  id: ID!
+}
+
+enum CommentSort {
+  NEWEST
+  OLDEST
+}
+
+type Mutation {
+  createComment(input: CreateCommentInput): CreateCommentPayload
+}
+
+type CreateCommentPayload {
+  userId: ID!
+  comment: UserComment
+}
+
+input CreateCommentInput {
+  body: String!
+  timestamp: Int!
+}
