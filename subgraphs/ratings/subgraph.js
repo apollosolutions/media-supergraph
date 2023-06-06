@@ -10,5 +10,5 @@ const typeDefs = parse(
   readFileSync(resolve(__dirname, "schema.graphql"), "utf8")
 );
 
-export const getCommentsSchema = () =>
+export const getRatingSchema = () =>
   buildSubgraphSchema([{ typeDefs, resolvers }]);

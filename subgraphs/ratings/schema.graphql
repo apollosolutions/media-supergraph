@@ -1,0 +1,19 @@
+# noinspection GraphQLTypeRedefinition
+
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@tag"]
+  )
+
+type Query {
+  """
+  Get specific media by id. Useful for the primary media page or overview page
+  """
+  getRatingById(id: ID!): Rating
+}
+
+type Rating @key(fields: "id") {
+  contentId: ID!
+  rating: Int
+}
