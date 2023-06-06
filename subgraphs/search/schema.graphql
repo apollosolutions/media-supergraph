@@ -1,0 +1,33 @@
+# noinspection GraphQLTypeRedefinition
+
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@tag"]
+  )
+
+type Query {
+  """
+  Get specific media by id. Useful for the primary media page or overview page
+  """
+  search(text: String!): SearchResponse
+}
+
+type Video @key(fields: "id") {
+  id: ID!
+}
+
+type User @key(fields: "id") {
+  id: ID!
+}
+
+union contentType = User | Video
+
+type SearchResponse {
+  text: String!
+  results: [Content]!
+}
+
+type Content {
+  content: contentType!
+}

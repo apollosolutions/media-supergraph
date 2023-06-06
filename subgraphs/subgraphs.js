@@ -7,6 +7,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { getMediaSchema } from "./media/subgraph.js";
 import { getUsersSchema } from "./users/subgraph.js";
+import { getSearchSchema } from "./search/subgraph.js";
 
 export const LOCAL_SUBGRAPH_CONFIG = [
   {
@@ -16,6 +17,10 @@ export const LOCAL_SUBGRAPH_CONFIG = [
   {
     name: "users",
     getSchema: getUsersSchema,
+  },
+  {
+    name: "search",
+    getSchema: getSearchSchema,
   },
 ];
 
