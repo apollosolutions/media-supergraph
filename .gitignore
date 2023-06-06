@@ -19,6 +19,7 @@ build
 # misc
 .DS_Store
 *.pem
+fly-*.toml
 
 # debug
 npm-debug.log*
