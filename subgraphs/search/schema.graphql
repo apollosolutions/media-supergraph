@@ -13,7 +13,7 @@ type Query {
   search(text: String!): SearchResponse
 }
 
-type Video @key(fields: "id") {
+type Media @key(fields: "id") {
   id: ID!
 }
 
@@ -21,13 +21,9 @@ type User @key(fields: "id") {
   id: ID!
 }
 
-union contentType = User | Video
+union content = User | Media
 
 type SearchResponse {
   text: String!
-  results: [Content]!
-}
-
-type Content {
-  content: contentType!
+  results: [content]!
 }

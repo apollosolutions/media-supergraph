@@ -1,15 +1,11 @@
 import { COMMENTS } from "./data.js";
 
-export const getCommentsById = (id) => COMMENTS.find((it) => it.id === id);
+export const getComments = () => COMMENTS;
 
 export const resolvers = {
   Query: {
-    userComments: (_, { id }) => getCommentsById(id),
-  },
-  COMMENTS: {
-    __resolveReference(ref) {
-      return getCommentsById(ref.id);
+    userComments: () => {
+      return { comments: getComments() };
     },
-    content: () => {},
   },
 };
