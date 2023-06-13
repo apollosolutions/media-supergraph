@@ -10,20 +10,10 @@ type Query {
   """
   Get specific media by id. Useful for the primary media page or overview page
   """
-  search(text: String!): SearchResponse
+  getRatingById(id: ID!): Rating
 }
 
-type Media @key(fields: "id") {
-  id: ID!
-}
-
-type User @key(fields: "id") {
-  id: ID!
-}
-
-union content = User | Media
-
-type SearchResponse {
-  text: String!
-  results: [content]!
+type Rating @key(fields: "contentId") {
+  contentId: ID!
+  rating: Int
 }

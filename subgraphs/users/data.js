@@ -1,14 +1,14 @@
-export const users = [
+export const USERS = [
   {
     id: "user:1",
     username: "John Smith",
   },
   {
     id: "user:2",
-    username: "User Two",
+    username: "Tim White",
   },
   {
     id: "user:3",
-    username: "User Three",
+    username: "Ben Potts",
   },
 ];

@@ -8,6 +8,8 @@ import bodyParser from "body-parser";
 import { getMediaSchema } from "./media/subgraph.js";
 import { getUsersSchema } from "./users/subgraph.js";
 import { getSearchSchema } from "./search/subgraph.js";
+import { getRatingSchema } from "./ratings/subgraph.js";
+import { getCommentsSchema } from "./comments/subgraph.js";
 
 export const LOCAL_SUBGRAPH_CONFIG = [
   {
@@ -21,6 +23,14 @@ export const LOCAL_SUBGRAPH_CONFIG = [
   {
     name: "search",
     getSchema: getSearchSchema,
+  },
+  {
+    name: "ratings",
+    getSchema: getRatingSchema,
+  },
+  {
+    name: "comments",
+    getSchema: getCommentsSchema,
   },
 ];
 
