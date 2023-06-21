@@ -16,3 +16,8 @@ homepage:
   enabled: false
 supergraph:
   introspection: true
+subscription:
+  mode:
+    passthrough:
+      all: # The router uses these subscription settings UNLESS overridden per-subgraph
+        path: /subscription # The URL path to use for subgraph subscription endpoints (Default: /ws)

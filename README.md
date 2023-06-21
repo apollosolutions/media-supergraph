@@ -4,6 +4,21 @@ This repo provides a demonstration supergraph for a media business containing me
 
 ## Getting Started
 
+In order to get started, you must first install all required packages and ensure you are running the following versions:
+
+```
+Router version v1.22.0
+Federation v2.4
+Apollo Server v4
+node v20
+```
+
+Once you have checked each of these versions, then install all dependencies:
+
+```
+npm i
+```
+
 locally run Subgraphs:
 
 ```
@@ -16,7 +31,13 @@ locally run Router:
 npm run router
 ```
 
-NOTE: If this is your first time running the project, make sure you have first downloaded the latest version of Router using the following command:
+Locally run the subscriptions subgraph
+
+```
+npm run subscriptions
+```
+
+NOTE: If this is your first time running the project, make sure you have first downloaded the latest version of Router (v1.22.0+ for Subscriptiona support) using the following command:
 
 ```
 curl -sSL https://router.apollo.dev/download/nix/latest | sh
@@ -43,6 +64,19 @@ Below is the list of GraphOS Specific features that are demonstrated in this rep
 - @Defer
 - Subscriptions
 - Entity Interface
+
+## Subscriptions Consideration
+
+This repo runs a monolithic express server for all subgraphs purely for demo purposes. However, in order to suport subscriptions we need to support web sockets from Router to Subgraph. Therefore we run a separate subgrpah server for the `trending` subgraph to demonstrate this feature.
+
+You can actually curl this Subscriptions endpoint via Router as well via the following:
+
+```
+curl 'http://localhost:4000/' -v \
+  -H 'accept: multipart/mixed; boundary="graphql"; subscriptionSpec=1.0, application/json' \
+  -H 'content-type: application/json' \
+  --data-raw '{"query":"subscription TrendingMedia { trendingMedia { id }}","operationName":"TrendingMedia"}'
+```
 
 ## Local Development
 
