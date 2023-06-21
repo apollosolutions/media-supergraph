@@ -1,10 +1,7 @@
 # noinspection GraphQLTypeRedefinition
 
 extend schema
-  @link(
-    url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@tag"]
-  )
+  @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key"])
 
 type Query {
   """
@@ -24,7 +21,7 @@ input MediaSearchInput {
 A specific piece of media for the site. This contains all the high level details describing the media along with the content itself.
 """
 type Media @key(fields: "id") {
-  id: ID! @tag(name: "internal")
+  id: ID!
   title: String
   description: String
   mediaUrl: String
