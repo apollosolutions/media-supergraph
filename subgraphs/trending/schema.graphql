@@ -5,7 +5,6 @@ extend schema
 
 type Subscription {
   trendingMedia: Media
-  numberIncremented: Int
 }
 
 """

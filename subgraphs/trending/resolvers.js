@@ -17,9 +17,6 @@ trendingMedia();
 
 export const resolvers = {
   Subscription: {
-    numberIncremented: {
-      subscribe: () => pubsub.asyncIterator(["NUMBER_INCREMENTED"]),
-    },
     trendingMedia: {
       subscribe: () => pubsub.asyncIterator(["MEDIA_TRENDING"]),
     },
