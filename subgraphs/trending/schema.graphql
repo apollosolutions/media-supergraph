@@ -3,18 +3,9 @@
 extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.4", import: ["@key"])
 
-type Query {
-  """
-  Get specific media by id. Useful for the primary media page or overview page
-  """
-  media(id: ID!): Media
-}
-
-"""
-Search filters for when returning Media
-"""
-input MediaSearchInput {
-  titleStartsWith: String
+type Subscription {
+  trendingMedia: Media
+  numberIncremented: Int
 }
 
 """
@@ -22,8 +13,4 @@ A specific piece of media for the site. This contains all the high level details
 """
 type Media @key(fields: "id") {
   id: ID!
-  title: String
-  description: String
-  mediaUrl: String
-  releaseDate: String
 }

@@ -10,4 +10,10 @@ const typeDefs = parse(
   readFileSync(resolve(__dirname, "schema.graphql"), "utf8")
 );
 
-export const getUsersSchema = () => buildSubgraphSchema([{ typeDefs, resolvers }]);
+const test = {
+  query: "subscription Subscription { trendingMedia { id }}",
+  operationName: "OnProductPriceChanged",
+};
+
+export const getUsersSchema = () =>
+  buildSubgraphSchema([{ typeDefs, resolvers }]);
