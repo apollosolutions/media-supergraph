@@ -1,7 +1,10 @@
 # noinspection GraphQLTypeRedefinition
 
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.4", import: ["@key"])
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.4"
+    import: ["@key", "@tag"]
+  )
 
 type Query {
   """
@@ -26,4 +29,5 @@ type Media @key(fields: "id") {
   description: String
   mediaUrl: String
   releaseDate: String
+  internalClassification: String! @tag(name: "internal")
 }
