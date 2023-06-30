@@ -1,7 +1,10 @@
 # noinspection
 
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.4", import: ["@key"])
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.4"
+    import: ["@key", "@tag"]
+  )
 
 type Query {
   """
@@ -23,5 +26,5 @@ type User @key(fields: "id") {
   username: String!
 
   "Internal Account Id associated with the given User"
-  accountId: Int
+  accountId: Int @tag(name: "internal")
 }
