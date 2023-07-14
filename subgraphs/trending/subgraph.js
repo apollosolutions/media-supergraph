@@ -4,7 +4,6 @@ import { buildSubgraphSchema } from "@apollo/subgraph";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { createServer } from "http";
 import express from "express";
-import { makeExecutableSchema } from "@graphql-tools/schema";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
 import bodyParser from "body-parser";
