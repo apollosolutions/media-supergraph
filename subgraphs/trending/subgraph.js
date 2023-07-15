@@ -60,15 +60,17 @@ const server = new ApolloServer({
   ],
 });
 
-await server.start();
-app.use("/graphql", cors(), bodyParser.json(), expressMiddleware(server));
+export const startSubgraph = async () => {
+  await server.start();
+  app.use("/graphql", cors(), bodyParser.json(), expressMiddleware(server));
 
 // Now that our HTTP server is fully set up, we can listen to it.
-httpServer.listen(port, () => {
-  console.log(
-    `Trending Server is now running on http://localhost:${port}/graphql`
-  );
-  console.log(
-    `Trending subscriptions now running on http://localhost:${port}/subscription`
-  );
-});
+  httpServer.listen(port, () => {
+    console.log(
+      `Trending Server is now running on http://localhost:${port}/graphql`
+    );
+    console.log(
+      `Trending subscriptions now running on http://localhost:${port}/subscription`
+    );
+  });
+};

@@ -13,24 +13,24 @@ import { getCommentsSchema } from "./comments/subgraph.js";
 
 export const LOCAL_SUBGRAPH_CONFIG = [
   {
+    name: "comments",
+    getSchema: getCommentsSchema,
+  },
+  {
     name: "media",
     getSchema: getMediaSchema,
-  },
-  {
-    name: "users",
-    getSchema: getUsersSchema,
-  },
-  {
-    name: "search",
-    getSchema: getSearchSchema,
   },
   {
     name: "ratings",
     getSchema: getRatingSchema,
   },
   {
-    name: "comments",
-    getSchema: getCommentsSchema,
+    name: "search",
+    getSchema: getSearchSchema,
+  },
+  {
+    name: "users",
+    getSchema: getUsersSchema,
   },
 ];
 
