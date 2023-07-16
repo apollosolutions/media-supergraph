@@ -20,10 +20,9 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - name: Install Rover
-        run: |
-          curl -sSL https://rover.apollo.dev/nix/latest | sh
-          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - uses: apollosolutions/setup-rover@main
+        with:
+          version: 'v0.17.1'
 
       - run: npm ci
 
