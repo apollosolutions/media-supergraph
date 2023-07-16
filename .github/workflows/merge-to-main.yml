@@ -22,7 +22,7 @@ jobs:
       - name: Deploy to fly
         run: flyctl deploy --remote-only
 
-  subgraph-checkout:
+  subgraph-comments:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,13 +33,13 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish subgraph schema
-        working-directory: ./subgraphs/checkout
+        working-directory: ./subgraphs/comments
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name checkout \
+          rover subgraph publish apollo-media-supergraph@prod \
+            --name comments \
             --schema schema.graphql
 
-  subgraph-discovery:
+  subgraph-media:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -50,13 +50,13 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish subgraph schema
-        working-directory: ./subgraphs/discovery
+        working-directory: ./subgraphs/media
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name discovery \
+          rover subgraph publish apollo-media-supergraph@prod \
+            --name media \
             --schema schema.graphql
 
-  subgraph-inventory:
+  subgraph-ratings:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -67,13 +67,13 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish subgraph schema
-        working-directory: ./subgraphs/inventory
+        working-directory: ./subgraphs/ratings
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name inventory \
+          rover subgraph publish apollo-media-supergraph@prod \
+            --name ratings \
             --schema schema.graphql
 
-  subgraph-orders:
+  subgraph-search:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -84,13 +84,13 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish subgraph schema
-        working-directory: ./subgraphs/orders
+        working-directory: ./subgraphs/search
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name orders \
+          rover subgraph publish apollo-media-supergraph@prod \
+            --name search \
             --schema schema.graphql
 
-  subgraph-products:
+  subgraph-trending:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -101,44 +101,10 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish subgraph schema
-        working-directory: ./subgraphs/products
+        working-directory: ./subgraphs/trending
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name products \
-            --schema schema.graphql
-
-  subgraph-reviews:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Rover
-        run: |
-          curl -sSL https://rover.apollo.dev/nix/latest | sh
-          echo "$HOME/.rover/bin" >> $GITHUB_PATH
-
-      - name: Publish subgraph schema
-        working-directory: ./subgraphs/reviews
-        run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name reviews \
-            --schema schema.graphql
-
-  subgraph-shipping:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Rover
-        run: |
-          curl -sSL https://rover.apollo.dev/nix/latest | sh
-          echo "$HOME/.rover/bin" >> $GITHUB_PATH
-
-      - name: Publish subgraph schema
-        working-directory: ./subgraphs/shipping
-        run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
-            --name shipping \
+          rover subgraph publish apollo-media-supergraph@prod \
+            --name trending \
             --schema schema.graphql
 
   subgraph-users:
@@ -154,7 +120,7 @@ jobs:
       - name: Publish subgraph schema
         working-directory: ./subgraphs/users
         run: |
-          rover subgraph publish apollo-retail-supergraph@prod \
+          rover subgraph publish apollo-media-supergraph@prod \
             --name users \
             --schema schema.graphql
 
@@ -169,4 +135,4 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
 
       - name: Publish README
-        run: rover readme publish apollo-retail-supergraph@prod --file README.md
+        run: rover readme publish apollo-media-supergraph@prod --file README.md

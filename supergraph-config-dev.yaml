@@ -1,0 +1,26 @@
+federation_version: =2.4.0
+subgraphs:
+  comments:
+    routing_url: http://localhost:4001/comments/graphql
+    schema:
+      file: ./subgraphs/comments/schema.graphql
+  media:
+    routing_url: http://localhost:4001/media/graphql
+    schema:
+      file: ./subgraphs/media/schema.graphql
+  ratings:
+    routing_url: http://localhost:4001/ratings/graphql
+    schema:
+      file: ./subgraphs/ratings/schema.graphql
+  search:
+    routing_url: http://localhost:4001/search/graphql
+    schema:
+      file: ./subgraphs/search/schema.graphql
+  trending:
+    routing_url: http://localhost:4001/trending/graphql
+    schema:
+      file: ./subgraphs/trending/schema.graphql
+  users:
+    routing_url: http://localhost:4001/users/graphql
+    schema:
+      file: ./subgraphs/users/schema.graphql
