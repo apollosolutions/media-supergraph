@@ -1,5 +1,4 @@
 import { startSubgraphs } from './subgraphs/subgraphs.js';
-import { startSubgraph as startTrendingSubgraph } from './subgraphs/trending/subgraph.js'
 
 // For local development, we will run `rover dev` that will handle
 // composition and configure the ports of the Router and subgraphs manually
@@ -12,6 +11,4 @@ import { startSubgraph as startTrendingSubgraph } from './subgraphs/trending/sub
     port = 4001;
   }
   await startSubgraphs(port);
-
-  await startTrendingSubgraph()
 })();

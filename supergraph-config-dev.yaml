@@ -16,9 +16,8 @@ subgraphs:
     routing_url: http://localhost:4001/search/graphql
     schema:
       file: ./subgraphs/search/schema.graphql
-  # Trending is its own app to run subscriptions
   trending:
-    routing_url: http://localhost:4002/graphql
+    routing_url: http://localhost:4001/trending/graphql
     schema:
       file: ./subgraphs/trending/schema.graphql
   users:

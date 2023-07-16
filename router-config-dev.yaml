@@ -1,6 +1,13 @@
 supergraph:
   listen: 127.0.0.1:4000
 
+# This requires Enterprise but is the config we can use on serverless
+#subscription:
+#  mode:
+#    passthrough:
+#      all:
+#        path: /subscriptions
+
 headers:
   all:
     request:

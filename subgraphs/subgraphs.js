@@ -10,6 +10,9 @@ import { getUsersSchema } from "./users/subgraph.js";
 import { getSearchSchema } from "./search/subgraph.js";
 import { getRatingSchema } from "./ratings/subgraph.js";
 import { getCommentsSchema } from "./comments/subgraph.js";
+import { WebSocketServer } from "ws";
+import { useServer } from "graphql-ws/lib/use/ws";
+import {getTrendingSchema} from "./trending/subgraph.js";
 
 export const LOCAL_SUBGRAPH_CONFIG = [
   {
@@ -29,6 +32,11 @@ export const LOCAL_SUBGRAPH_CONFIG = [
     getSchema: getSearchSchema,
   },
   {
+    name: "trending",
+    getSchema: getTrendingSchema,
+    subscriptions: true,
+  },
+  {
     name: "users",
     getSchema: getUsersSchema,
   },
@@ -36,6 +44,18 @@ export const LOCAL_SUBGRAPH_CONFIG = [
 
 const getLocalSubgraphConfig = (subgraphName) =>
   LOCAL_SUBGRAPH_CONFIG.find((it) => it.name === subgraphName);
+
+const getSubscriptionShutdownPlugin = (serverCleanup, subscriptionsEnabled) => ({
+  async serverWillStart() {
+    return {
+      async drainServer() {
+        if (serverCleanup && subscriptionsEnabled === true) {
+          await serverCleanup.dispose();
+        }
+      },
+    };
+  },
+});
 
 export const startSubgraphs = async (httpPort) => {
   // Create a monolith express app for all subgraphs
@@ -47,16 +67,30 @@ export const startSubgraphs = async (httpPort) => {
   for (const subgraph of LOCAL_SUBGRAPH_CONFIG) {
     const subgraphConfig = getLocalSubgraphConfig(subgraph.name);
     const schema = subgraphConfig.getSchema();
+    const path = `/${subgraphConfig.name}/graphql`;
+
+    // Optionally setup subscriptions for this subgraph
+    let serverCleanup = undefined;
+    if (subgraphConfig.subscriptions === true) {
+      const wsServer = new WebSocketServer({
+        server: httpServer,
+        path: path,
+      });
+      serverCleanup = useServer({ schema }, wsServer);
+    }
+
     const server = new ApolloServer({
       schema,
       // For a real subgraph introspection should remain off, but for demo we enabled
       introspection: true,
-      plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+      plugins: [
+        ApolloServerPluginDrainHttpServer({ httpServer }),
+        getSubscriptionShutdownPlugin(serverCleanup, subgraphConfig.subscriptions)
+      ],
     });
 
     await server.start();
 
-    const path = `/${subgraphConfig.name}/graphql`;
     app.use(
       path,
       cors(),
@@ -69,6 +103,12 @@ export const startSubgraphs = async (httpPort) => {
     console.log(
       `Setting up [${subgraphConfig.name}] subgraph at http://localhost:${serverPort}${path}`
     );
+
+    if (subgraphConfig.subscriptions === true) {
+      console.log(
+        `Setting up [${subgraphConfig.name}] subgraph SUBSCRIPTIONS at ws://localhost:${serverPort}${path}`
+      );
+    }
   }
 
   // Start entire monolith at given port
