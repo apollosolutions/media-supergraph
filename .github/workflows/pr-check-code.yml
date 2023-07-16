@@ -20,6 +20,11 @@ jobs:
           node-version: 18.x
           cache: "npm"
 
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+
       - run: npm ci
 
       - run: npm test
