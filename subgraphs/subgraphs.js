@@ -68,13 +68,14 @@ export const startSubgraphs = async (httpPort) => {
     const subgraphConfig = getLocalSubgraphConfig(subgraph.name);
     const schema = subgraphConfig.getSchema();
     const path = `/${subgraphConfig.name}/graphql`;
+    const wsPath = `/${subgraphConfig.name}/ws`;
 
     // Optionally setup subscriptions for this subgraph
     let serverCleanup = undefined;
     if (subgraphConfig.subscriptions === true) {
       const wsServer = new WebSocketServer({
         server: httpServer,
-        path: path,
+        path: wsPath,
       });
       serverCleanup = useServer({ schema }, wsServer);
     }
@@ -106,7 +107,7 @@ export const startSubgraphs = async (httpPort) => {
 
     if (subgraphConfig.subscriptions === true) {
       console.log(
-        `Setting up [${subgraphConfig.name}] subgraph SUBSCRIPTIONS at ws://localhost:${serverPort}${path}`
+        `Setting up [${subgraphConfig.name}] subgraph SUBSCRIPTIONS at ws://localhost:${serverPort}${wsPath}`
       );
     }
   }
