@@ -68,7 +68,7 @@ export const startSubgraphs = async (httpPort) => {
     const subgraphConfig = getLocalSubgraphConfig(subgraph.name);
     const schema = subgraphConfig.getSchema();
     const path = `/${subgraphConfig.name}/graphql`;
-    const wsPath = `/${subgraphConfig.name}/ws`;
+    const wsPath = `/ws`;
 
     // Optionally setup subscriptions for this subgraph
     let serverCleanup = undefined;
