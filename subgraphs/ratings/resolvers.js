@@ -1,14 +1,14 @@
 import { RATINGS } from "./data.js";
 
-export const getRatingById = (id) => RATINGS.find((it) => it.contentId === id);
+export const ratingById = (id) => RATINGS.find((it) => it.contentId === id);
 
 export const resolvers = {
   Query: {
-    getRatingById: (_, { id }) => getRatingById(id),
+    ratingById: (_, { id }) => ratingById(id),
   },
   Rating: {
     __resolveReference(ref) {
-      return getRatingById(ref.id);
+      return ratingById(ref.id);
     },
   },
 };
