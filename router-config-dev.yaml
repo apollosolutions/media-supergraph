@@ -1,12 +1,15 @@
 supergraph:
   listen: 127.0.0.1:4000
 
+include_subgraph_errors:
+  all: true
+
 # This requires Enterprise but is the config we can use on serverless
 #subscription:
 #  mode:
 #    passthrough:
 #      all:
-#        path: /subscriptions
+#        path: /ws
 
 headers:
   all:
