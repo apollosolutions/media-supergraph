@@ -18,9 +18,9 @@ type User @key(fields: "id") {
   id: ID!
 }
 
-union content = User | Media
+union Content = User | Media
 
 type SearchResponse {
   text: String!
-  results: [content]!
+  results: [Content]!
 }

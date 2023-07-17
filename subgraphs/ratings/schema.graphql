@@ -7,7 +7,7 @@ type Query {
   """
   Get specific media by id. Useful for the primary media page or overview page
   """
-  getRatingById(id: ID!): Rating
+  ratingById(id: ID!): Rating
 }
 
 type Rating @key(fields: "contentId") {
