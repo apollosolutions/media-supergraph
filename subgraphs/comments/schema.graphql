@@ -28,6 +28,7 @@ type User @key(fields: "id") {
 enum CommentSort {
   NEWEST
   OLDEST
+  BEST @deprecated(reason: "This option is deprecated")
 }
 
 type Mutation {
