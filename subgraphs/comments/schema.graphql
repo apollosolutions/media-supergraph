@@ -1,7 +1,7 @@
 # noinspection GraphQLTypeRedefinition
 
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.4", import: ["@key"])
+  @link(url: "https://specs.apollo.dev/federation/v2.5", import: ["@key"])
 
 type Query {
   """
