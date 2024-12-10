@@ -1,0 +1,7 @@
+name: media-supergraph
+description: A demonstration supergraph for a media business containing media
+  and users subgraphs. Use the schema as inspiration for your own media
+  supergraph!
+tags:
+  - Demo
+  - Supergraph
